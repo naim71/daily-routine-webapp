@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
+import SidePanel from '../SidePanel/SidePanel';
 
 const Cards = () => {
     const  [cards, setCards] = useState([]);
@@ -10,14 +11,14 @@ const Cards = () => {
             .then(data => setCards(data))
     }, [])
     return (
-        <div className='grid grid-cols-4 h-screen'>
-        <div className='grid grid-cols-3 gap-4 col-span-3 mx-20 my-20'>
+        <div className='grid grid-cols-4'>
+        <div className='grid grid-cols-3 gap-8 col-span-3 mx-20 my-20'>
                 {
                     cards.map(card=> <Card key={card.id} card={card}></Card>)
                 }
         </div>
         <div className='bg-slate-50'>
-            <h1>Side Panel</h1>
+                <SidePanel></SidePanel>
         </div>
         </div>
         
