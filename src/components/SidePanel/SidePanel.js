@@ -1,8 +1,15 @@
 import React from 'react';
+import RoundButton from '../RoundButton/RoundButton';
 
-const SidePanel = () => {
+const SidePanel = ({cart}) => {
+
+    let total = 0;
+    for(const card of cart){
+        total = total + card.time;
+    }
+
     return (
-        <div className='mt-6 mx-6'>
+        <div className='mt-6 mx-6'> 
             <div className='flex'>
                 <img className="w-12 h-12 rounded-lg mr-5" src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" alt="Rounded avatar"></img>
                 <div className='text-left'>
@@ -25,10 +32,16 @@ const SidePanel = () => {
                 </div>
             </div>
 
+            {/* add a break section */}
             <p className='text-xl font-bold text-left mt-10'>Add A Break</p>
 
             <div className='bg-slate-200 flex justify-center space-x-4 p-2 py-4 rounded-lg mt-10'>
-                <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
+                <RoundButton></RoundButton>
+                <RoundButton></RoundButton>
+                <RoundButton></RoundButton>
+                <RoundButton></RoundButton>
+                <RoundButton></RoundButton>
+                {/* <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
                    <button>10</button><span>s</span>
                 </div>
                 <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
@@ -42,18 +55,19 @@ const SidePanel = () => {
                 </div>
                 <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
                     <button>50</button><span>s</span>
-                </div>
+                </div> */}
             </div>
+            {/* break section end */}
 
             <p className='text-xl font-bold text-left mt-10'>Exercise Details</p>
             
             <div className='bg-slate-200 flex justify-between px-6 py-4 rounded-lg mt-10'>
                     <p className='text-xl font-bold'>Task Time:</p>
-                    <p className='text-xl font-medium'>20<span> minutes</span></p>
+                    <p className='text-xl font-medium'>{total}<span> minutes</span></p>
             </div>
             <div className='bg-slate-200 flex justify-between px-6 py-4 rounded-lg mt-5'>
                     <p className='text-xl font-bold'>Break Time:</p>
-                    <p className='text-xl font-medium'>20<span> minutes</span></p>
+                    <p className='text-xl font-medium'><span> minutes</span></p>
             </div>
 
             <button className='bg-indigo-500 hover:bg-teal-500 px-20 py-4 rounded mt-14 text-white font-medium'>Activity Completed</button>
