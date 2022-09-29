@@ -48,11 +48,11 @@ const SidePanel = () => {
             <p className='text-xl font-bold text-left mt-10'>Exercise Details</p>
             
             <div className='bg-slate-200 flex justify-between px-6 py-4 rounded-lg mt-10'>
-                    <p className='text-xl font-bold'>Task Time</p>
+                    <p className='text-xl font-bold'>Task Time:</p>
                     <p className='text-xl font-medium'>20<span> minutes</span></p>
             </div>
             <div className='bg-slate-200 flex justify-between px-6 py-4 rounded-lg mt-5'>
-                    <p className='text-xl font-bold'>Break Time</p>
+                    <p className='text-xl font-bold'>Break Time:</p>
                     <p className='text-xl font-medium'>20<span> minutes</span></p>
             </div>
 
