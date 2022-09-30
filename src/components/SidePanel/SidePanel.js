@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RoundButton from '../RoundButton/RoundButton';
+import { addToDb , getData } from '../../Utilities/fakedb';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
  
 const SidePanel = ({cart}) => {
+    const [timer, setTimer] = useState([]);
+    const [clicks, setClicks] = useState([]);
+    useEffect(()=>{
+        fetch('fakebuttondata.json')
+        .then(res=>res.json())
+        .then(data => setTimer(data))
+}, []);
+
+    const clickTimer = (timers) => {
+    const newTimer = [...clicks, timers];
+    setClicks(newTimer);
+    console.log(timers.id);
+    addToDb();
+
+}
 
     const notify = () => {
         toast.success("Congratualtions! Tasks are done.",{position: toast.POSITION.BOTTOM_RIGHT});
       }
     
+    let time = 0;
+    for(const clicker of clicks){
+        time = clicker.time;
+    } 
+    
     let total = 0;
-    for(const card of cart){
-        total = total + card.time;
+    for(const times of cart){
+        total = total + times.time;
     }
 
     return (
@@ -44,26 +65,13 @@ const SidePanel = ({cart}) => {
             <p className='text-xl font-bold text-left mt-10'>Add A Break</p>
 
             <div className='bg-slate-200 flex justify-center space-x-4 p-2 py-4 rounded-lg mt-10'>
-                <RoundButton></RoundButton>
-                <RoundButton></RoundButton>
-                <RoundButton></RoundButton>
-                <RoundButton></RoundButton>
-                <RoundButton></RoundButton>
-                {/* <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
-                   <button>10</button><span>s</span>
-                </div>
-                <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
-                    <button>20</button><span>s</span>
-                </div >
-                <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
-                    <button>30</button><span>s</span>
-                </div>
-                <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
-                    <button>40</button><span>s</span>
-                </div>
-                <div className='flex items-center bg-white w-15 h-10 rounded-full p-2 font-bold hover:bg-indigo-500 hover:text-white'>
-                    <button>50</button><span>s</span>
-                </div> */}
+            {
+                timer.map(timers=> <RoundButton 
+                    timers={timers}
+                    key={timers.id}
+                    clickTimer={clickTimer}
+                    ></RoundButton>)   
+            }
             </div>
             {/* break section end */}
 
@@ -75,10 +83,10 @@ const SidePanel = ({cart}) => {
             </div>
             <div className='bg-slate-200 flex justify-between px-6 py-4 rounded-lg mt-5'>
                     <p className='text-xl font-bold'>Break Time:</p>
-                    <p className='text-xl font-medium'><span> minutes</span></p>
+                    <p className='text-xl font-medium'>{time}<span> minutes</span></p>
             </div>
 
-            <button onClick={notify} className='bg-indigo-500 hover:bg-teal-500 px-20 py-4 rounded mt-14 text-white font-medium GeeksforGeeks'>Activity Completed</button>
+            <button onClick={notify} className='bg-indigo-500 hover:bg-teal-500 px-16 py-3 rounded mt-14 text-white font-medium'>Activity Completed</button>
             <ToastContainer />
 
         </div>

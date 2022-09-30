@@ -3,7 +3,6 @@ import './Card.css'
 
 const Card = ({clickHandler, card}) => {
     const {title, picture, time} = card;
-
     return (
         <div>
              <div className='max-w-sm px-2 py-2 bg-white rounded-lg border border-gray-200 shadow-sm'>

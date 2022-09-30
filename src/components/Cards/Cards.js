@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb , getData } from '../../Utilities/fakedb';
 import Card from '../Card/Card';
 import Question from '../Question/Question';
 import SidePanel from '../SidePanel/SidePanel';
 
 const Cards = () => {
     const  [cards, setCards] = useState([]);
-    const [cart, setCart] = useState([]);    
+    const [cart, setCart] = useState([]);   
+   
     
     useEffect(()=>{
             fetch('data.json')
@@ -13,12 +15,28 @@ const Cards = () => {
             .then(data => setCards(data))
     }, []);
 
+    useEffect(() => {
+        const storeData = getData();
+        const savedData = [];
+        for (const id in storeData) {
+            const product = cards.find(item=> item.id === id);
+            if(product){
+                const quantity = storeData[id];
+                product.quantity = quantity;
+                savedData.push(product);
+            }
+        }
+        setCart(savedData);
+    }, [cards]);
+    
     const clickHandler = (card) => {
         const newCart = [...cart, card];
         setCart(newCart);
-        console.log(card);
-        }
-    return (
+        const newId = card.id;
+        addToDb(newId);
+    }
+   
+        return (
         <div className='bg-slate-200'>
         <div className='lg:flex md:sm:flex'>
             
@@ -40,7 +58,7 @@ const Cards = () => {
 
         </div>
         <div className='bg-slate-50'>
-            
+
                 <SidePanel
                 cart={cart}
                 ></SidePanel>
