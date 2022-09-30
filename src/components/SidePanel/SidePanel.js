@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SidePanel = ({cart}) => {
 
     const notify = () => {
-        toast("Congratualtions! Tasks are done.");
+        toast.success("Congratualtions! Tasks are done.",{position: toast.POSITION.BOTTOM_RIGHT});
       }
     
     let total = 0;
