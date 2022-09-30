@@ -1,8 +1,16 @@
 import React from 'react';
 import RoundButton from '../RoundButton/RoundButton';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
+
+ 
 const SidePanel = ({cart}) => {
 
+    const notify = () => {
+        toast("Congratualtions! Tasks are done.");
+      }
+    
     let total = 0;
     for(const card of cart){
         total = total + card.time;
@@ -70,7 +78,8 @@ const SidePanel = ({cart}) => {
                     <p className='text-xl font-medium'><span> minutes</span></p>
             </div>
 
-            <button className='bg-indigo-500 hover:bg-teal-500 px-20 py-4 rounded mt-14 text-white font-medium'>Activity Completed</button>
+            <button onClick={notify} className='bg-indigo-500 hover:bg-teal-500 px-20 py-4 rounded mt-14 text-white font-medium GeeksforGeeks'>Activity Completed</button>
+            <ToastContainer />
 
         </div>
     );
