@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import RoundButton from '../RoundButton/RoundButton';
-import { addToDb , getData } from '../../Utilities/fakedb';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,8 +17,6 @@ const SidePanel = ({cart}) => {
     const clickTimer = (timers) => {
     const newTimer = [...clicks, timers];
     setClicks(newTimer);
-    console.log(timers.id);
-    addToDb();
 
 }
 
