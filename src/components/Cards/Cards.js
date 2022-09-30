@@ -20,14 +20,14 @@ const Cards = () => {
         }
     return (
         <div className='bg-slate-200'>
-        <div className='grid grid-cols-4 sm:border-solid sm:border-2 sm:border-indigo-600'>
+        <div className='lg:flex md:sm:flex'>
             
-        <div className='grid grid-cols-3 gap-8 col-span-3 mx-20 my-20 md:grid-cols-1'>
-        <div className='col-span-3 flex justify-center align-center space-x-3'>
+        <div className='grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:col-span-2 gap-8 mx-20 my-10'>
+        <div className='lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:col-span-3 gap-8 mx-auto my-5'>
                 <h1 className='text-left text-3xl font-bold text-indigo-700'>
                     Daily Routine</h1>
         </div>
-        <div className='col-span-3'>
+        <div className='lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 lg:col-span-3 gap-8 mx-auto my-auto'>
             <p className='text-left text-lg font-semibold'>Select your daily tasks</p>
 
         </div>
@@ -45,9 +45,9 @@ const Cards = () => {
                 cart={cart}
                 ></SidePanel>
         </div>
-        <div className='col-span-4 mx-auto mb-8'>
-            <Question></Question>
         </div>
+        <div className='col-span-4 mx-auto py-5'>
+            <Question></Question>
         </div>
        
         </div>
